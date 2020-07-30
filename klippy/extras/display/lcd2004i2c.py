@@ -14,8 +14,8 @@ class LCD2004I2C:
         self.lcd.backlight(1)
 
     def write_text(self, x, y, data):
-        # logging.info("LCD2004 %s %d %d" , data, x, y)
-        self.lcd.lcd_display_string(data, x + 1, y)
+        #logging.info("LCD2004 %s %d %d" , data, x, y)
+        self.lcd.lcd_display_string(data, y + 1, x)
 
     def set_glyphs(self, glyphs):
         pass
@@ -27,12 +27,11 @@ class LCD2004I2C:
         pass
 
     def clear(self):
-        self.lcd.lcd_clear()
+        pass
 
     def get_dimensions(self):
         return (20, 4)
 
     def handle_shutdown(self):
-        if self.lcd:
-            self.lcd.backlight(0)
-            self.lcd = None
+        self.lcd.lcd_clear()
+        self.lcd.backlight(0)
